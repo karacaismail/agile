@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agile & Scrum Sözlüğü</title>
+
+    <!-- Google Fonts - Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Flowbite CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Fixed dimensions for desktop view, responsive for smaller screens */
+        @media (min-width: 1536px) {
+            body {
+                width: 1536px;
+                height: 832px;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .container-fixed {
+                width: 1536px;
+                height: 832px;
+            }
+        }
+
+        .container-fixed {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-section {
+            height: 75px; /* Increased by 50% */
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 22px; /* Increased by 50% */
+            flex-shrink: 0;
+        }
+
+        .content-section {
+            flex: 1;
+            background-color: white;
+            padding: 12px; /* Increased by 50% */
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-section {
+            flex-shrink: 0;
+            background-color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 16px; /* Mobile: top/bottom 16px, left/right 16px */
+            font-size: 15px; /* Increased by 50% */
+            color: #d1d5db;
+            text-align: center;
+            border-top: 1px solid #374151;
+            width: 100vw; /* Full width */
+            margin-left: calc(-50vw + 50%); /* Center full width */
+        }
+
+        @media (min-width: 768px) {
+            .footer-section {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 32px; /* Desktop: 32px all around */
+                margin-left: 0; /* Reset margin for desktop */
+                width: 100%; /* Reset width for desktop */
+            }
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px; /* Increased by 50% */
+            margin-bottom: 8px; /* Increased by 50% */
+        }
+
+        @media (min-width: 768px) {
+            .footer-left {
+                flex-direction: row;
+                gap: 15px; /* Increased by 50% */
+                margin-bottom: 0;
+            }
+        }
+
+        .footer-right {
+            text-align: center;
+        }
+
+        .footer-link {
+            color: #60a5fa;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            color: #93c5fd;
+            text-decoration: underline;
+        }
+
+        .term-card {
+            background-color: #fafafa;
+            margin-bottom: 9px; /* Increased by 50% */
+            padding: 9px; /* Increased by 50% */
+            border-radius: 6px; /* Increased by 50% */
+        }
+
+        .term-original {
+            color: #000;
+            font-weight: 600;
+            font-size: 18px; /* Increased by 50% */
+            margin-bottom: 5px; /* Increased by 50% */
+        }
+
+        .term-kisaltma {
+            display: inline-block;
+            font-weight: 500;
+            font-size: 12px; /* Increased by 50% */
+            padding: 2px 8px; /* Increased by 50% */
+            border-radius: 12px; /* Increased by 50% */
+            margin-bottom: 5px; /* Increased by 50% */
+            margin-right: 3px; /* Added spacing */
+            background-color: #f3f4f6;
+            color: #374151;
+        }
+
+        .term-acilim {
+            display: inline-block;
+            font-weight: 500;
+            font-size: 12px; /* Increased by 50% */
+            padding: 2px 8px; /* Increased by 50% */
+            border-radius: 12px; /* Increased by 50% */
+            margin-bottom: 5px; /* Increased by 50% */
+            margin-right: 3px; /* Added spacing */
+            background-color: #e5e7eb;
+            color: #4b5563;
+        }
+
+        .term-turkish {
+            display: inline-block;
+            font-weight: 500;
+            font-size: 15px; /* Increased by 50% */
+            padding: 2px 9px; /* Increased by 50% */
+            border-radius: 15px; /* Increased by 50% */
+            margin-bottom: 5px; /* Increased by 50% */
+            margin-right: 3px; /* Added spacing */
+        }
+
+        .pill-blue {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+
+        .pill-green {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .pill-purple {
+            background-color: #f3e8ff;
+            color: #7c3aed;
+        }
+
+        .pill-pink {
+            background-color: #fce7f3;
+            color: #be185d;
+        }
+
+        .pill-orange {
+            background-color: #fed7aa;
+            color: #c2410c;
+        }
+
+        .pill-teal {
+            background-color: #ccfbf1;
+            color: #0f766e;
+        }
+
+        .pill-grey {
+            background-color: #e5e7eb;
+            color: #4b5563;
+        }
+
+        .term-anlam {
+            color: #1f2937;
+            font-weight: 500;
+            font-size: 13px; /* Increased by 50% */
+            line-height: 1.3;
+            margin-bottom: 3px; /* Added spacing */
+        }
+
+        .term-description {
+            color: #4b5563;
+            font-weight: 400;
+            font-size: 12px; /* Increased by 50% */
+            line-height: 1.3;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 450px; /* Increased by 50% */
+            margin-bottom: 12px; /* Increased by 50% */
+            padding: 6px 12px; /* Increased by 50% */
+            border-radius: 6px; /* Increased by 50% */
+            font-family: 'Roboto', sans-serif;
+            font-size: 18px; /* Increased by 50% */
+            background-color: #f9fafb;
+            outline: none;
+        }
+
+        .search-box:focus {
+            background-color: #f3f4f6;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 9px; /* Increased by 50% */
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        @media (min-width: 768px) {
+            .grid-container {
+                grid-template-columns: repeat(3, 1fr);
+                overflow: hidden;
+            }
+        }
+
+        .column {
+            background-color: white;
+            border-radius: 6px; /* Increased by 50% */
+            padding: 9px; /* Increased by 50% */
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .column-content {
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .column-content::-webkit-scrollbar {
+            width: 5px; /* Increased by 50% */
+        }
+
+        .column-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 2px; /* Increased by 50% */
+        }
+
+        .column-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 2px; /* Increased by 50% */
+        }
+
+        .column-content::-webkit-scrollbar-thumb:hover {
+            background: #a1a1a1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fixed" x-data="dictionaryApp()">
+        <!-- Header -->
+        <div class="header-section">
+            <h1 class="text-2xl font-bold text-black">Agile & Scrum Sözlüğü</h1> <!-- Increased font size -->
+        </div>
+
+        <!-- Content -->
+        <div class="content-section">
+            <!-- Search Box -->
+            <input
+                type="text"
+                class="search-box"
+                placeholder="Terim ara..."
+                x-model="searchTerm"
+                @input="filterTerms()"
+            >
+
+            <!-- Grid Layout -->
+            <div class="grid-container">
+                <!-- Column 1 -->
+                <div class="column">
+                    <div class="column-content">
+                        <template x-for="(term, index) in filteredTerms.column1" :key="term.terim">
+                            <div class="term-card">
+                                <div class="term-original" x-text="term.terim"></div>
+                                <div class="flex flex-wrap gap-1 mb-1">
+                                    <span x-show="term.kisaltma" class="term-kisaltma" x-text="term.kisaltma"></span>
+                                    <span x-show="term.acilim" class="term-acilim" x-text="term.acilim"></span>
+                                    <span class="term-turkish" :class="getPillClass(index)" x-text="term.turkcesi"></span>
+                                    <template x-for="(synonym, synIndex) in term.es_anlamlilari" :key="synIndex">
+                                        <span class="term-turkish pill-grey" x-text="synonym"></span>
+                                    </template>
+                                </div>
+                                <div class="term-anlam" x-text="term.anlam"></div>
+                                <div class="term-description" x-text="term.aciklama"></div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="column">
+                    <div class="column-content">
+                        <template x-for="(term, index) in filteredTerms.column2" :key="term.terim">
+                            <div class="term-card">
+                                <div class="term-original" x-text="term.terim"></div>
+                                <div class="flex flex-wrap gap-1 mb-1">
+                                    <span x-show="term.kisaltma" class="term-kisaltma" x-text="term.kisaltma"></span>
+                                    <span x-show="term.acilim" class="term-acilim" x-text="term.acilim"></span>
+                                    <span class="term-turkish" :class="getPillClass(index)" x-text="term.turkcesi"></span>
+                                    <template x-for="(synonym, synIndex) in term.es_anlamlilari" :key="synIndex">
+                                        <span class="term-turkish pill-grey" x-text="synonym"></span>
+                                    </template>
+                                </div>
+                                <div class="term-anlam" x-text="term.anlam"></div>
+                                <div class="term-description" x-text="term.aciklama"></div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- Column 3 -->
+                <div class="column">
+                    <div class="column-content">
+                        <template x-for="(term, index) in filteredTerms.column3" :key="term.terim">
+                            <div class="term-card">
+                                <div class="term-original" x-text="term.terim"></div>
+                                <div class="flex flex-wrap gap-1 mb-1">
+                                    <span x-show="term.kisaltma" class="term-kisaltma" x-text="term.kisaltma"></span>
+                                    <span x-show="term.acilim" class="term-acilim" x-text="term.acilim"></span>
+                                    <span class="term-turkish" :class="getPillClass(index)" x-text="term.turkcesi"></span>
+                                    <template x-for="(synonym, synIndex) in term.es_anlamlilari" :key="synIndex">
+                                        <span class="term-turkish pill-grey" x-text="synonym"></span>
+                                    </template>
+                                </div>
+                                <div class="term-anlam" x-text="term.anlam"></div>
+                                <div class="term-description" x-text="term.aciklama"></div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-section">
+            <div class="footer-left">
+                <span>Geliştiren:</span>
+                <a href="https://linkedin.com/in/ismailkaracaofficial" target="_blank" rel="noopener noreferrer" class="footer-link">
+                    İsmail 🌔 Karaca
+                </a>
+                <span>Digital Intelligence Strategist, Consultant. Head of: 🌐 Titanlar.com</span>
+            </div>
+            <div class="footer-right">
+                <div>Bu proje İsmail Karaca tarafından MIT lisansı ile özgürce paylaşılmıştır.</div>
+                <div>© 2025 - Açık kaynak kodlu ve ücretsiz kullanım için tasarlanmıştır.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Flowbite JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+
+    <script>
+        function dictionaryApp() {
+            return {
+                searchTerm: '',
+                terms: [],
+                filteredTerms: {
+                    column1: [],
+                    column2: [],
+                    column3: []
+                },
+
+                async init() {
+                    // Load terms from JSON
+                    try {
+                        const response = await fetch('./agile_scrum_vocabulary.json');
+                        const data = await response.json();
+                        this.terms = data.agile_scrum_vocabulary;
+                    } catch (error) {
+                        // Fallback data if JSON file is not accessible
+                        this.terms = [
+                            {
+                                "terim": "Acceptance Criteria",
+                                "kisaltma": "AC",
+                                "acilim": "",
+                                "turkcesi": "Kabul Kriterleri",
+                                "es_anlamlilari": [],
+                                "anlam": "Bir kullanıcı hikayesinin veya ürün özelliğinin tamamlanmış sayılması için karşılanması gereken koşullar listesi.",
+                                "aciklama": "Bir kullanıcı hikayesinin veya ürün özelliğinin tamamlanmış sayılması için karşılanması gereken koşullar listesidir. Genellikle test edilebilir ve ölçülebilir niteliktedir."
+                            },
+                            {
+                                "terim": "Agile Coach",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Çevik Koç",
+                                "es_anlamlilari": [],
+                                "anlam": "Takımlara ve organizasyonlara çevik prensipleri ve uygulamaları benimsemelerinde rehberlik eden kişi.",
+                                "aciklama": "Takımlara ve organizasyonlara çevik prensipleri ve uygulamaları benimsemelerinde, süreçlerini iyileştirmelerinde ve kültürel dönüşümlerinde rehberlik eden kişidir."
+                            },
+                            {
+                                "terim": "Agile Manifesto",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Çevik Manifesto",
+                                "es_anlamlilari": [],
+                                "anlam": "Yazılım geliştirmede bireyleri, çalışan yazılımı, müşteri iş birliğini ve değişime uyumu vurgulayan temel değerler bütünü.",
+                                "aciklama": "Yazılım geliştirmede bireyleri ve etkileşimleri, çalışan yazılımı, müşteri iş birliğini ve değişime uyumu süreçler ve araçlar, kapsamlı dökümantasyon, sözleşme pazarlıkları ve sabit planlara bağlı kalmaktan daha çok vurgulayan temel değerler ve prensipler bütünüdür."
+                            },
+                            {
+                                "terim": "Backlog Refinement",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "İş Listesi İyileştirme",
+                                "es_anlamlilari": ["Backlog Grooming"],
+                                "anlam": "Ürün İş Listesi maddelerini detaylandırma, tahminleme ve önceliklendirme aktivitesi.",
+                                "aciklama": "Ürün İş Listesi maddelerini sürekli olarak detaylandırma, tahminleme, önceliklendirme ve düzenleme aktivitesidir. Bu, maddelerin net, anlaşılır ve hazır olmasını sağlar."
+                            },
+                            {
+                                "terim": "Blocker",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Engelleyici",
+                                "es_anlamlilari": ["Hard Blocker"],
+                                "anlam": "Bir takımın veya bireyin ilerlemesini tamamen durduran sorun.",
+                                "aciklama": "Bir takımın veya bireyin ilerlemesini tamamen durduran, acil müdahale gerektiren bir durum veya sorundur. Tüm engelleyiciler birer engeldir, ancak her engel engelleyici değildir."
+                            },
+                            {
+                                "terim": "Burndown Chart",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "İş Bitirme Grafiği",
+                                "es_anlamlilari": [],
+                                "anlam": "Sprint veya proje boyunca kalan iş miktarını gösteren grafik.",
+                                "aciklama": "Sprint veya proje boyunca kalan iş miktarını (genellikle hikaye puanı veya saat olarak) zaman ekseninde gösteren görsel bir grafiktir. Takımın ilerlemesini takip etmek için kullanılır."
+                            },
+                            {
+                                "terim": "Burnup Chart",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "İş Tamamlama Grafiği",
+                                "es_anlamlilari": [],
+                                "anlam": "Tamamlanan iş miktarını ve toplam iş kapsamını gösteren grafik.",
+                                "aciklama": "Tamamlanan iş miktarını ve toplam iş kapsamını gösteren görsel bir grafiktir. Projenin ilerlemesini ve kapsam değişikliklerini izlemek için kullanılır."
+                            },
+                            {
+                                "terim": "Continuous Delivery",
+                                "kisaltma": "CD",
+                                "acilim": "",
+                                "turkcesi": "Sürekli Teslimat",
+                                "es_anlamlilari": [],
+                                "anlam": "Yazılımın her zaman güvenilir bir şekilde yayınlanmaya hazır olmasını sağlayan yaklaşım.",
+                                "aciklama": "Yazılımın her zaman güvenilir bir şekilde yayınlanmaya hazır olmasını sağlayan bir yazılım mühendisliği yaklaşımıdır. Otomatik testler ve dağıtım süreçleri içerir."
+                            },
+                            {
+                                "terim": "Continuous Integration",
+                                "kisaltma": "CI",
+                                "acilim": "",
+                                "turkcesi": "Sürekli Entegrasyon",
+                                "es_anlamlilari": [],
+                                "anlam": "Geliştiricilerin kod değişikliklerini sık sık merkezi bir depoya entegre ettiği uygulama.",
+                                "aciklama": "Geliştiricilerin kod değişikliklerini sık sık (günde birkaç kez) merkezi bir depoya entegre ettiği ve her entegrasyonun otomatik testlerle doğrulandığı yazılım geliştirme uygulamasıdır."
+                            },
+                            {
+                                "terim": "Cross-functional Team",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Çapraz Fonksiyonlu Takım",
+                                "es_anlamlilari": ["Çok Disiplinli Takım"],
+                                "anlam": "Bir ürünün geliştirilmesi için gerekli tüm becerilere sahip üyelerden oluşan takım.",
+                                "aciklama": "Bir ürünün geliştirilmesi için gerekli tüm becerilere (analiz, tasarım, geliştirme, test vb.) sahip üyelerden oluşan, dışarıdan bağımlılığı minimum olan takımdır."
+                            },
+                            {
+                                "terim": "Daily Scrum",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Günlük Scrum",
+                                "es_anlamlilari": ["Stand-up Meeting", "Günlük Ayaküstü Toplantı"],
+                                "anlam": "Geliştirme Takımının ilerlemeyi senkronize ettiği 15 dakikalık günlük toplantı.",
+                                "aciklama": "Geliştirme Takımının ilerlemeyi senkronize ettiği ve sonraki 24 saat için bir plan oluşturduğu, 15 dakikalık zaman kutulu günlük toplantıdır. Her üye dün ne yaptığını, bugün ne yapacağını ve herhangi bir engeli paylaştığını belirtir."
+                            },
+                            {
+                                "terim": "Definition of Done",
+                                "kisaltma": "DoD",
+                                "acilim": "",
+                                "turkcesi": "Bitti Tanımı",
+                                "es_anlamlilari": [],
+                                "anlam": "Bir işin 'tamamlandı' olarak kabul edilmesi için gereken kriterler listesi.",
+                                "aciklama": "Bir işin (örn: kullanıcı hikayesi, ürün artışı) 'tamamlandı' olarak kabul edilmesi için karşılanması gereken tüm kalite kriterlerini ve adımlarını içeren ortak kontrol listesidir. Şeffaflık ve kalite güvencesi sağlar."
+                            },
+                            {
+                                "terim": "Definition of Ready",
+                                "kisaltma": "DoR",
+                                "acilim": "",
+                                "turkcesi": "Hazır Tanımı",
+                                "es_anlamlilari": [],
+                                "anlam": "Bir Ürün İş Listesi maddesinin Sprint'e alınmaya hazır olması için karşılaması gereken kriterler listesi.",
+                                "aciklama": "Bir Ürün İş Listesi maddesinin Sprint'e alınmaya hazır olması için karşılaması gereken kriterler listesidir. Genellikle net, test edilebilir, tahmin edilebilir ve küçük boyutlu olmasını sağlar."
+                            },
+                            {
+                                "terim": "Development Team",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Geliştirici Takım",
+                                "es_anlamlilari": ["Geliştirme Ekibi", "Dev Team"],
+                                "anlam": "Her Sprint sonunda potansiyel olarak yayınlanabilir bir ürün parçası teslim eden profesyonellerden oluşan takım.",
+                                "aciklama": "Her Sprint sonunda potansiyel olarak yayınlanabilir bir ürün parçası teslim etmekten sorumlu olan, kendi kendini organize eden ve çapraz fonksiyonlu profesyonellerden oluşan takımdır."
+                            },
+                            {
+                                "terim": "DevOps",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "DevOps",
+                                "es_anlamlilari": [],
+                                "anlam": "Yazılım geliştirme ve BT operasyonları arasındaki işbirliğini vurgulayan kültür ve metodoloji.",
+                                "aciklama": "Yazılım geliştirme (Dev) ve BT operasyonları (Ops) arasındaki işbirliğini, iletişimi ve entegrasyonu vurgulayan bir kültür, uygulama ve araç setidir. Hızlı ve güvenilir yazılım teslimatını hedefler."
+                            },
+                            {
+                                "terim": "Done Increment",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Tamamlanmış Artış",
+                                "es_anlamlilari": ["Potentially Shippable Increment"],
+                                "anlam": "Sprint sonunda 'Bitti Tanımı'na uygun olarak tamamlanmış ürün parçası.",
+                                "aciklama": "Sprint sonunda 'Bitti Tanımı'na uygun olarak tamamlanmış ve müşteriye değer sağlayabilecek, potansiyel olarak yayınlanabilir ürün parçasıdır."
+                            },
+                            {
+                                "terim": "Empiricism",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Deneycilik",
+                                "es_anlamlilari": [],
+                                "anlam": "Bilginin deneyimden ve kararların gözlemlenebilir gerçeklerden alındığı ilke.",
+                                "aciklama": "Bilginin deneyimden ve kararların gözlemlenebilir gerçeklerden alındığı ilkesidir. Scrum'ın temel direklerinden biridir (Şeffaflık, Gözlem, Adaptasyon ile birlikte)."
+                            },
+                            {
+                                "terim": "Epic",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Epik",
+                                "es_anlamlilari": [],
+                                "anlam": "Tek bir Sprint'te tamamlanamayacak kadar büyük işlevsellik.",
+                                "aciklama": "Tek bir Sprint'te tamamlanamayacak kadar büyük olan ve daha küçük kullanıcı hikayelerine veya özelliklere bölünen geniş işlevsellik veya müşteri gereksinimidir."
+                            },
+                            {
+                                "terim": "Facilitator",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Kolaylaştırıcı",
+                                "es_anlamlilari": [],
+                                "anlam": "Toplantıların verimli geçmesini sağlayan ve takıma yardımcı olan kişi.",
+                                "aciklama": "Toplantıların verimli geçmesini sağlayan, takımın kendi çözümlerini bulmasına yardımcı olan ve süreci yöneten kişidir. Scrum Master genellikle bu rolü üstlenir."
+                            },
+                            {
+                                "terim": "Feature",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Özellik",
+                                "es_anlamlilari": [],
+                                "anlam": "Bir ürünün kullanıcıya değer sağlayan belirli bir işlevselliği.",
+                                "aciklama": "Bir ürünün kullanıcıya değer sağlayan belirli bir işlevselliğidir. Genellikle birden fazla kullanıcı hikayesini kapsar."
+                            },
+                            {
+                                "terim": "Gantt Chart",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Gantt Şeması",
+                                "es_anlamlilari": [],
+                                "anlam": "Bir proje planını gösteren, görevleri ve zaman çizelgesini görselleştiren araç.",
+                                "aciklama": "Bir proje planını gösteren, görevleri, zaman çizelgesini, bağımlılıkları ve atananları görselleştiren geleneksel bir proje yönetim aracıdır."
+                            },
+                            {
+                                "terim": "Impediment",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Engel",
+                                "es_anlamlilari": ["Roadblock"],
+                                "anlam": "Takımın ilerlemesini yavaşlatan veya zorlaştıran sorun.",
+                                "aciklama": "Takımın ilerlemesini yavaşlatan veya zorlaştıran herhangi bir sorun, durum veya dış faktördür. Scrum Master'ın temel görevlerinden biri bu engelleri kaldırmaktır."
+                            },
+                            {
+                                "terim": "Increment",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Artış",
+                                "es_anlamlilari": ["Ürün Artışı"],
+                                "anlam": "Önceki artışların üzerine inşa edilen ve potansiyel olarak yayınlanabilir ürün parçası.",
+                                "aciklama": "Önceki artışların üzerine inşa edilen ve potansiyel olarak yayınlanabilir olan, 'Bitti Tanımı'na uygun ürün parçasıdır. Her Sprint sonunda ortaya çıkar."
+                            },
+                            {
+                                "terim": "Information Radiator",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Bilgi Radyatörü",
+                                "es_anlamlilari": [],
+                                "anlam": "Takım ve paydaşların bilgiyi kolayca görebileceği görsel araç.",
+                                "aciklama": "Takım üyelerinin ve paydaşların projenin durumu, ilerlemesi ve önemli bilgileri kolayca görebileceği şekilde görsel olarak sergileyen bir araçtır (örn: görev tahtası, burndown chart)."
+                            },
+                            {
+                                "terim": "Iteration",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "İterasyon",
+                                "es_anlamlilari": ["Döngü"],
+                                "anlam": "Tekrarlayan ve zaman sınırlı bir geliştirme döngüsü.",
+                                "aciklama": "Tekrarlayan ve zaman sınırlı bir geliştirme döngüsüdür. Genellikle Scrum'daki Sprint terimiyle eş anlamlı olarak kullanılır."
+                            },
+                            {
+                                "terim": "Kanban",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Kanban",
+                                "es_anlamlilari": [],
+                                "anlam": "İş akışını görselleştirmeye, işi sınırlamaya ve akışı yönetmeye odaklanan çevik metodoloji.",
+                                "aciklama": "İş akışını görselleştirmeye, devam eden işi (WIP) sınırlamaya ve akışı yönetmeye odaklanan bir çevik metodolojidir. Sürekli teslimat ve verimlilik artışı hedefler."
+                            },
+                            {
+                                "terim": "Lean Software Development",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Yalın Yazılım Geliştirme",
+                                "es_anlamlilari": [],
+                                "anlam": "Değeri maksimize etmeye ve israfı minimize etmeye odaklanan yaklaşım.",
+                                "aciklama": "Değeri maksimize etmeye, israfı (gereksiz işleri) minimize etmeye ve sürekli öğrenmeye odaklanan bir yazılım geliştirme yaklaşımıdır. Toyota Üretim Sistemi'nden esinlenilmiştir."
+                            },
+                            {
+                                "terim": "Minimum Viable Product",
+                                "kisaltma": "MVP",
+                                "acilim": "",
+                                "turkcesi": "Minimum Uygulanabilir Ürün",
+                                "es_anlamlilari": [],
+                                "anlam": "Bir ürünün en temel özellik setine sahip, erken müşteri geri bildirimi almak için yeterli versiyonu.",
+                                "aciklama": "Bir ürünün en temel özellik setine sahip, erken müşteri geri bildirimi almak ve öğrenmek için yeterli olan, ancak yine de değer sağlayan versiyonudur."
+                            },
+                            {
+                                "terim": "Pair Programming",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Eşli Programlama",
+                                "es_anlamlilari": [],
+                                "anlam": "İki geliştiricinin tek bir iş istasyonunda birlikte kod yazdığı teknik.",
+                                "aciklama": "İki geliştiricinin tek bir iş istasyonunda birlikte çalışarak kod yazdığı bir yazılım geliştirme tekniğidir. Biri kod yazarken diğeri gözden geçirir ve fikir verir."
+                            },
+                            {
+                                "terim": "Planning Poker",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Planlama Pokeri",
+                                "es_anlamlilari": [],
+                                "anlam": "Takım üyelerinin işin karmaşıklığını ve eforunu tahmin etmek için kullandığı konsensüs tabanlı tahmin tekniği.",
+                                "aciklama": "Takım üyelerinin işin karmaşıklığını ve eforunu tahmin etmek için kullandığı, konsensüs tabanlı bir tahmin tekniğidir. Fibonacci sayıları gibi kartlar kullanılır."
+                            },
+                            {
+                                "terim": "Product Backlog",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Ürün İş Listesi",
+                                "es_anlamlilari": ["Ürün Kapsam Listesi"],
+                                "anlam": "Üründe olması istenen tüm özelliklerin önceliklendirilmiş dinamik listesi.",
+                                "aciklama": "Üründe olması istenen tüm özelliklerin, gereksinimlerin, iyileştirmelerin ve hata düzeltmelerinin önceliklendirilmiş, dinamik ve tek kaynağıdır. Ürün Sahibi tarafından yönetilir."
+                            },
+                            {
+                                "terim": "Product Increment",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Ürün Parçası (Artış)",
+                                "es_anlamlilari": ["Increment"],
+                                "anlam": "Sprint sonunda 'Bitti' tanımına uyan ve potansiyel olarak yayınlanabilir ürün parçası.",
+                                "aciklama": "Sprint sonunda ortaya çıkan, 'Bitti Tanımı'na uyan ve potansiyel olarak yayınlanabilir değerdeki ürün parçasıdır. Önceki tüm artışları içerir ve yeni değer ekler."
+                            },
+                            {
+                                "terim": "Product Owner",
+                                "kisaltma": "PO",
+                                "acilim": "",
+                                "turkcesi": "Ürün Sahibi",
+                                "es_anlamlilari": [],
+                                "anlam": "Ürünün vizyonunu belirleyen ve geliştirilecek işlerin değerini en üst seviyeye çıkarmaktan sorumlu kişi.",
+                                "aciklama": "Ürünün vizyonunu belirleyen, Ürün İş Listesi'ni yöneten ve geliştirilecek işlerin değerini en üst seviyeye çıkarmaktan sorumlu kişidir. Müşteri ve geliştirme takımı arasında köprü görevi görür."
+                            },
+                            {
+                                "terim": "Refactoring",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Yeniden Yapılandırma",
+                                "es_anlamlilari": [],
+                                "anlam": "Dış davranışını değiştirmeden bir yazılım sisteminin iç yapısını iyileştirme süreci.",
+                                "aciklama": "Dış davranışını değiştirmeden bir yazılım sisteminin iç yapısını iyileştirme sürecidir. Kodun okunabilirliğini, sürdürülebilirliğini ve performansını artırmayı hedefler."
+                            },
+                            {
+                                "terim": "Release Planning",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Sürüm Planlama",
+                                "es_anlamlilari": [],
+                                "anlam": "Birden fazla Sprint'i kapsayan, ürünün bir sürümünün hedeflerini belirleyen stratejik toplantı.",
+                                "aciklama": "Birden fazla Sprint'i kapsayan, ürünün bir sürümünün hedeflerini, kapsamını ve yol haritasını belirleyen stratejik toplantıdır. Genellikle Ürün Sahibi ve paydaşlar tarafından yapılır."
+                            },
+                            {
+                                "terim": "Retrospective",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Retrospektif",
+                                "es_anlamlilari": ["Sprint Retrospective", "Geçmişe Bakış"],
+                                "anlam": "Takımın geçmiş Sprint'i değerlendirerek iyileştirme aksiyonları aldığı toplantı.",
+                                "aciklama": "Takımın geçmiş Sprint'i değerlendirerek neyin iyi gittiğini, neyin geliştirilebileceğini ve nasıl iyileştirileceğini belirlediği, sürekli iyileşmeyi hedefleyen zaman kutulu bir toplantıdır."
+                            },
+                            {
+                                "terim": "Scrum",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Scrum",
+                                "es_anlamlilari": [],
+                                "anlam": "Karmaşık ürünleri geliştirmek için kullanılan çevik yönetim çerçevesi.",
+                                "aciklama": "Karmaşık ürünleri geliştirmek için kullanılan, tekrarlayan ve artımlı bir çevik yönetim çerçevesidir. Rolleri, etkinlikleri ve eserleri tanımlanmıştır."
+                            },
+                            {
+                                "terim": "Scrum Master",
+                                "kisaltma": "SM",
+                                "acilim": "",
+                                "turkcesi": "Scrum Master",
+                                "es_anlamlilari": ["Orkestratör"],
+                                "anlam": "Scrum sürecinin doğru uygulanmasını sağlayan, takımı koruyan ve engelleri kaldıran hizmetkar lider.",
+                                "aciklama": "Scrum sürecinin doğru uygulanmasını sağlayan, takımı koruyan, engelleri kaldıran ve çevik prensipleri benimsemelerine yardımcı olan hizmetkar liderdir."
+                            },
+                            {
+                                "terim": "Scrum of Scrums",
+                                "kisaltma": "SoS",
+                                "acilim": "",
+                                "turkcesi": "Scrum'ların Scrum'ı",
+                                "es_anlamlilari": [],
+                                "anlam": "Birden fazla Scrum takımının koordinasyon sağladığı toplantı formatı.",
+                                "aciklama": "Birden fazla Scrum takımının büyük ve karmaşık bir ürünü geliştirmek için koordinasyon sağladığı, bağımlılıkları ve engelleri paylaştığı bir toplantı formatıdır."
+                            },
+                            {
+                                "terim": "Self-organizing Team",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Kendi Kendini Organize Eden Takım",
+                                "es_anlamlilari": [],
+                                "anlam": "Kendi işlerini nasıl yapacaklarına karar veren ve dışarıdan yönlendirme olmadan çalışan takım.",
+                                "aciklama": "Kendi işlerini nasıl en iyi şekilde yapacaklarına karar veren, dışarıdan yönlendirme olmadan çalışan ve sorumlulukları kendi içinde dağıtan takımdır."
+                            },
+                            {
+                                "terim": "Spike",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Spike",
+                                "es_anlamlilari": ["Keşif Görevi", "Araştırma Spike'ı"],
+                                "anlam": "Bir soruna çözüm bulmak veya bir işin karmaşıklığını anlamak için yapılan kısa süreli araştırma görevi.",
+                                "aciklama": "Bir soruna çözüm bulmak, bir işin karmaşıklığını anlamak, yeni bir teknoloji veya yaklaşımı araştırmak için yapılan kısa süreli, zaman kutulu bir araştırma görevidir."
+                            },
+                            {
+                                "terim": "Sprint",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Sprint",
+                                "es_anlamlilari": ["İterasyon"],
+                                "anlam": "Genellikle 1-4 hafta süren, sonunda değerli bir ürün parçası üretilen zaman kutulu döngü.",
+                                "aciklama": "Genellikle 1-4 hafta süren, sonunda değerli bir ürün parçasının üretildiği zaman kutulu bir döngüdür. Scrum'ın kalbidir."
+                            },
+                            {
+                                "terim": "Sprint Backlog",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Sprint İş Listesi",
+                                "es_anlamlilari": [],
+                                "anlam": "Sprint hedefi için Ürün İş Listesi'nden seçilen maddeler ve bunları teslim etme planı.",
+                                "aciklama": "Sprint hedefi için Ürün İş Listesi'nden seçilen maddeler ve bunları teslim etme planıdır. Geliştirme Takımı tarafından yönetilir ve sadece o Sprint için geçerlidir."
+                            },
+                            {
+                                "terim": "Sprint Goal",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Sprint Hedefi",
+                                "es_anlamlilari": [],
+                                "anlam": "Sprint sırasında ulaşılması hedeflenen, Sprint'in nedenini açıklayan kısa ve öz ifade.",
+                                "aciklama": "Sprint sırasında ulaşılması hedeflenen, Sprint'in nedenini açıklayan kısa ve öz bir ifadedir. Geliştirme Takımına odaklanma ve esneklik sağlar."
+                            },
+                            {
+                                "terim": "Sprint Planning",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Sprint Planlama",
+                                "es_anlamlilari": [],
+                                "anlam": "Sprint'in başında yapılan, o Sprint'te hangi işlerin yapılacağının ve nasıl yapılacağının planlandığı toplantı.",
+                                "aciklama": "Sprint'in başında yapılan, o Sprint'te hangi işlerin yapılacağının ve nasıl yapılacağının planlandığı zaman kutulu bir toplantıdır. Ürün Sahibi ve Geliştirme Takımı katılır."
+                            },
+                            {
+                                "terim": "Sprint Retrospective",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Sprint Retrospektifi",
+                                "es_anlamlilari": ["Retrospective", "Geçmişe Bakış"],
+                                "anlam": "Sprint sonunda takımın kendini değerlendirip iyileştirme aksiyonları aldığı toplantı.",
+                                "aciklama": "Sprint sonunda takımın kendini (süreç, ilişki, araçlar) değerlendirip iyileştirme aksiyonları aldığı, sürekli iyileşmeyi hedefleyen zaman kutulu bir toplantıdır."
+                            },
+                            {
+                                "terim": "Sprint Review",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Sprint Değerlendirmesi",
+                                "es_anlamlilari": [],
+                                "anlam": "Sprint sonunda paydaşlarla birlikte tamamlanan işlerin incelendiği ve geri bildirim alınan toplantı.",
+                                "aciklama": "Sprint sonunda paydaşlarla birlikte tamamlanan işlerin incelendiği, geri bildirim alındığı ve Ürün İş Listesi'nin uyarlanabileceği resmi olmayan bir toplantıdır."
+                            },
+                            {
+                                "terim": "Stakeholder",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Paydaş",
+                                "es_anlamlilari": [],
+                                "anlam": "Proje veya ürünle ilgisi olan veya ondan etkilenen kişi veya grup.",
+                                "aciklama": "Proje veya ürünle ilgisi olan veya ondan etkilenen herhangi bir kişi veya gruptur (örn: müşteriler, yöneticiler, son kullanıcılar)."
+                            },
+                            {
+                                "terim": "Story Point",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Hikaye Puanı",
+                                "es_anlamlilari": [],
+                                "anlam": "Bir işin eforunu, karmaşıklığını ve riskini ölçmek için kullanılan göreceli tahmin birimi.",
+                                "aciklama": "Bir işin eforunu, karmaşıklığını ve riskini ölçmek için kullanılan göreceli bir tahmin birimidir. Genellikle Fibonacci serisi gibi sayısal değerlerle ifade edilir."
+                            },
+                            {
+                                "terim": "Task Board",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Görev Tahtası",
+                                "es_anlamlilari": ["Kanban Board", "Scrum Board"],
+                                "anlam": "İş akışını 'Yapılacak', 'Yapılıyor', 'Tamamlandı' gibi sütunlarla görselleştiren araç.",
+                                "aciklama": "İş akışını 'Yapılacak', 'Yapılıyor', 'Tamamlandı' gibi sütunlarla görselleştiren fiziksel veya dijital bir araçtır. Takımın ilerlemesini ve engellerini izlemesine yardımcı olur."
+                            },
+                            {
+                                "terim": "Technical Debt",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Teknik Borç",
+                                "es_anlamlilari": [],
+                                "anlam": "Kısa vadeli çözümlerin uzun vadede neden olduğu ek geliştirme maliyeti.",
+                                "aciklama": "Kısa vadeli çözümlerin veya kalitesiz kodun uzun vadede neden olduğu ek geliştirme maliyetidir. Zamanla biriken ve ödenmesi gereken bir 'borç' gibidir."
+                            },
+                            {
+                                "terim": "Time-box",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Zaman Kutusu",
+                                "es_anlamlilari": [],
+                                "anlam": "Bir aktivite veya olaya ayrılan maksimum süre.",
+                                "aciklama": "Bir aktivite veya olaya ayrılan maksimum süredir. Bu süre dolduğunda aktivite sona erer, tamamlanmasa bile. Scrum etkinlikleri zaman kutuludur."
+                            },
+                            {
+                                "terim": "User Story",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Kullanıcı Hikayesi",
+                                "es_anlamlilari": [],
+                                "anlam": "Bir yazılım özelliğini son kullanıcının perspektifinden anlatan kısa ve basit açıklama.",
+                                "aciklama": "Bir yazılım özelliğini son kullanıcının perspektifinden anlatan kısa ve basit bir açıklamadır. Genellikle 'Bir [rol] olarak, [istediğim şey] yapmak istiyorum, böylece [değer]' formatındadır."
+                            },
+                            {
+                                "terim": "Value Stream Mapping",
+                                "kisaltma": "VSM",
+                                "acilim": "",
+                                "turkcesi": "Değer Akışı Haritalama",
+                                "es_anlamlilari": [],
+                                "anlam": "Bir ürün veya hizmetin müşteriye ulaşana kadar geçtiği tüm adımları görselleştiren araç.",
+                                "aciklama": "Bir ürün veya hizmetin müşteriye ulaşana kadar geçtiği tüm adımları görselleştiren, israfı belirleyip ortadan kaldırmayı amaçlayan bir yalın yönetim aracıdır."
+                            },
+                            {
+                                "terim": "Velocity",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Hız",
+                                "es_anlamlilari": [],
+                                "anlam": "Bir takımın tek bir Sprint'te ortalama olarak ne kadar iş tamamladığını gösteren ölçüm.",
+                                "aciklama": "Bir takımın tek bir Sprint'te ortalama olarak ne kadar iş (genellikle hikaye puanı olarak) tamamladığını gösteren ölçümdür. Gelecek Sprint'ler için tahmin yapmaya yardımcı olur."
+                            },
+                            {
+                                "terim": "Vision",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Vizyon",
+                                "es_anlamlilari": ["Ürün Vizyonu"],
+                                "anlam": "Ürünün uzun vadeli hedefini açıklayan ilham verici ifade.",
+                                "aciklama": "Ürünün uzun vadeli hedefini, neyi başarmayı amaçladığını ve kimlere değer sağlayacağını açıklayan ilham verici bir ifadedir. Ürün Sahibi tarafından belirlenir."
+                            },
+                            {
+                                "terim": "Waterfall Model",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Şelale Modeli",
+                                "es_anlamlilari": [],
+                                "anlam": "Geliştirme sürecinin doğrusal ve sıralı adımlarla ilerlediği geleneksel proje yönetim metodolojisi.",
+                                "aciklama": "Geliştirme sürecinin doğrusal ve sıralı adımlarla (gereksinimler, tasarım, uygulama, test, dağıtım) ilerlediği geleneksel bir proje yönetim metodolojisidir. Her aşama bir öncekinin tamamlanmasını bekler."
+                            },
+                            {
+                                "terim": "XP",
+                                "kisaltma": "",
+                                "acilim": "Extreme Programming",
+                                "turkcesi": "Aşırı Programlama",
+                                "es_anlamlilari": [],
+                                "anlam": "Yüksek kaliteli yazılımı hızlı ve sürekli teslim etmeyi amaçlayan çevik yazılım geliştirme metodolojisi.",
+                                "aciklama": "Yüksek kaliteli yazılımı hızlı ve sürekli bir şekilde teslim etmeyi amaçlayan, test odaklı geliştirme, eşli programlama ve sürekli entegrasyon gibi pratikleri vurgulayan bir çevik yazılım geliştirme metodolojisidir."
+                            },
+                            {
+                                "terim": "Acceptance Testing",
+                                "kisaltma": "UAT",
+                                "acilim": "User Acceptance Testing",
+                                "turkcesi": "Kabul Testi",
+                                "es_anlamlilari": [],
+                                "anlam": "Geliştirilen ürünün kullanıcı gereksinimlerini karşılayıp karşılamadığını doğrulamak için yapılan test.",
+                                "aciklama": "Geliştirilen ürünün veya özelliğin, kullanıcıların veya müşterilerin gereksinimlerini karşılayıp karşılamadığını doğrulamak için yapılan test türüdür."
+                            },
+                            {
+                                "terim": "Agile Adoption",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Çevik Benimseme",
+                                "es_anlamlilari": ["Agile Transformation"],
+                                "anlam": "Bir organizasyonun çevik prensipleri ve uygulamalarını entegre etme süreci.",
+                                "aciklama": "Bir organizasyonun çevik prensipleri ve uygulamaları süreçlerine, kültürüne ve yapısına entegre etme sürecidir."
+                            },
+                            {
+                                "terim": "Architectural Runway",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Mimari Pist",
+                                "es_anlamlilari": [],
+                                "anlam": "Gelecekteki özelliklerin geliştirilmesini desteklemek için gerekli mevcut mimari bileşenler.",
+                                "aciklama": "Gelecekteki özelliklerin geliştirilmesini desteklemek için gerekli olan mevcut mimari bileşenler, altyapı ve teknoloji tabanıdır."
+                            },
+                            {
+                                "terim": "Behavior-Driven Development",
+                                "kisaltma": "BDD",
+                                "acilim": "",
+                                "turkcesi": "Davranış Odaklı Geliştirme",
+                                "es_anlamlilari": [],
+                                "anlam": "Yazılımın beklenen davranışını ortak bir dilde tanımlayarak geliştirme, test etme ve işbirliğini teşvik eden metodoloji.",
+                                "aciklama": "Yazılımın beklenen davranışını ortak bir dilde (Gherkin gibi) tanımlayarak geliştirme, test etme ve işbirliğini teşvik eden bir çevik yazılım geliştirme metodolojisidir."
+                            },
+                            {
+                                "terim": "Collective Code Ownership",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Ortak Kod Sahipliği",
+                                "es_anlamlilari": [],
+                                "anlam": "Takımdaki herkesin kod tabanının herhangi bir bölümünü değiştirebileceği prensibi.",
+                                "aciklama": "Takımdaki herkesin kod tabanının herhangi bir bölümünü değiştirebileceği ve iyileştirebileceği prensibidir. Bilgi paylaşımını ve esnekliği artırır."
+                            },
+                            {
+                                "terim": "Continuous Deployment",
+                                "kisaltma": "CD",
+                                "acilim": "",
+                                "turkcesi": "Sürekli Dağıtım",
+                                "es_anlamlilari": [],
+                                "anlam": "Yazılımın otomatik olarak test edildikten sonra üretim ortamına dağıtıldığı uygulama.",
+                                "aciklama": "Yazılımın otomatik olarak test edildikten sonra üretim ortamına dağıtıldığı bir yazılım mühendisliği uygulamasıdır. Sürekli Teslimat'ın bir üst seviyesidir."
+                            },
+                            {
+                                "terim": "Customer Collaboration",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Müşteri İşbirliği",
+                                "es_anlamlilari": [],
+                                "anlam": "Müşteriyle sürekli ve yakın işbirliğini vurgulayan çevik değer.",
+                                "aciklama": "Çevik Manifestonun temel değerlerinden biridir; sözleşme pazarlıklarından ziyade müşteriyle sürekli ve yakın işbirliğini vurgular."
+                            },
+                            {
+                                "terim": "Emergent Design",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Ortaya Çıkan Tasarım",
+                                "es_anlamlilari": [],
+                                "anlam": "Yazılımın tasarımının ve mimarisinin zamanla evrimleştiği yaklaşım.",
+                                "aciklama": "Yazılımın tasarımı ve mimarisinin zamanla, öğrenme ve geri bildirim döngüleri aracılığıyla evrimleştiği ve geliştiği yaklaşımdır."
+                            },
+                            {
+                                "terim": "Feature Driven Development",
+                                "kisaltma": "FDD",
+                                "acilim": "",
+                                "turkcesi": "Özellik Odaklı Geliştirme",
+                                "es_anlamlilari": [],
+                                "anlam": "Özelliklerin geliştirilmesine odaklanan çevik yazılım geliştirme metodolojisi.",
+                                "aciklama": "Özelliklerin geliştirilmesine odaklanan, kısa iterasyonlar ve net tanımlanmış rollerle çalışan bir çevik yazılım geliştirme metodolojisidir."
+                            },
+                            {
+                                "terim": "Flow",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Akış",
+                                "es_anlamlilari": [],
+                                "anlam": "İşin bir sistem içinde sorunsuz ve kesintisiz ilerlemesi.",
+                                "aciklama": "İşin bir sistem içinde sorunsuz ve kesintisiz ilerlemesini ifade eder. Kanban'ın temel prensiplerinden biridir."
+                            },
+                            {
+                                "terim": "Increment of Value",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Değer Artışı",
+                                "es_anlamlilari": [],
+                                "anlam": "Her Sprint sonunda ortaya çıkan, müşteriye somut ve kullanılabilir değer sağlayan ürün parçası.",
+                                "aciklama": "Her Sprint sonunda ortaya çıkan, müşteriye veya paydaşlara somut ve kullanılabilir değer sağlayan ürün parçasıdır."
+                            },
+                            {
+                                "terim": "Inspect and Adapt",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "İncele ve Uyarlan",
+                                "es_anlamlilari": [],
+                                "anlam": "Süreçleri ve ürünleri düzenli olarak gözden geçirerek sürekli iyileşmeyi sağlama prensibi.",
+                                "aciklama": "Scrum'ın temel prensiplerinden biridir; süreçleri ve ürünleri düzenli olarak gözden geçirerek ve gerektiğinde ayarlamalar yaparak sürekli iyileşmeyi sağlar."
+                            },
+                            {
+                                "terim": "Iteration Planning",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "İterasyon Planlama",
+                                "es_anlamlilari": ["Sprint Planning"],
+                                "anlam": "Bir iterasyonun başında, o iterasyonda hangi işlerin yapılacağının planlandığı toplantı.",
+                                "aciklama": "Bir iterasyonun (Sprint) başında, o iterasyonda hangi işlerin yapılacağının ve nasıl yapılacağının planlandığı toplantıdır."
+                            },
+                            {
+                                "terim": "Kanban Board",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Kanban Panosu",
+                                "es_anlamlilari": ["Task Board", "Scrum Board"],
+                                "anlam": "İş akışını 'Yapılacak', 'Yapılıyor', 'Tamamlandı' gibi sütunlarla görselleştiren araç.",
+                                "aciklama": "İş akışını 'Yapılacak', 'Yapılıyor', 'Tamamlandı' gibi sütunlarla görselleştiren bir araçtır. İşin durumunu ve ilerlemesini şeffaf bir şekilde gösterir."
+                            },
+                            {
+                                "terim": "Lead Time",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Teslim Süresi",
+                                "es_anlamlilari": [],
+                                "anlam": "Bir işin müşteri tarafından talep edildiği andan, teslim edildiği ana kadar geçen toplam süre.",
+                                "aciklama": "Bir işin müşteri tarafından talep edildiği andan, müşteriye teslim edildiği ana kadar geçen toplam süredir."
+                            },
+                            {
+                                "terim": "Lean Startup",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Yalın Girişim",
+                                "es_anlamlilari": [],
+                                "anlam": "Yeni ürün ve hizmetlerin geliştirilmesi için 'Oluştur-Ölç-Öğren' geri bildirim döngüsünü kullanan metodoloji.",
+                                "aciklama": "Yeni ürün ve hizmetlerin geliştirilmesi için 'Oluştur-Ölç-Öğren' geri bildirim döngüsünü kullanan bir metodolojidir. Hızlı deneyler ve müşteri geri bildirimi odaklıdır."
+                            },
+                            {
+                                "terim": "Limiting Work in Progress",
+                                "kisaltma": "WIP",
+                                "acilim": "Work in Progress",
+                                "turkcesi": "Devam Eden İşi Sınırlama",
+                                "es_anlamlilari": ["WIP Limitleri"],
+                                "anlam": "Bir anda üzerinde çalışılan iş miktarını sınırlama prensibi.",
+                                "aciklama": "Bir anda üzerinde çalışılan iş miktarını sınırlama prensibidir. Bu, odaklanmayı artırır, bağlam değiştirme maliyetlerini azaltır ve akışı iyileştirir."
+                            },
+                            {
+                                "terim": "Metrics",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Metrikler",
+                                "es_anlamlilari": [],
+                                "anlam": "Takımın performansını, süreç verimliliğini ve ürün kalitesini ölçmek için kullanılan nicel göstergeler.",
+                                "aciklama": "Takımın performansını, süreç verimliliğini ve ürün kalitesini ölçmek için kullanılan nicel göstergelerdir (örn: Velocity, Lead Time, Cycle Time)."
+                            },
+                            {
+                                "terim": "Mob Programming",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Mob Programlama",
+                                "es_anlamlilari": [],
+                                "anlam": "Tüm takımın tek bir bilgisayar başında aynı iş üzerinde çalıştığı teknik.",
+                                "aciklama": "Tüm takımın tek bir bilgisayar başında, tek bir klavye ve fare kullanarak aynı anda aynı iş üzerinde çalıştığı bir yazılım geliştirme tekniğidir. Bilgi paylaşımını ve takım uyumunu artırır."
+                            },
+                            {
+                                "terim": "Non-functional Requirements",
+                                "kisaltma": "NFRs",
+                                "acilim": "",
+                                "turkcesi": "Fonksiyonel Olmayan Gereksinimler",
+                                "es_anlamlilari": [],
+                                "anlam": "Bir sistemin nasıl performans göstermesi gerektiğini tanımlayan gereksinimler.",
+                                "aciklama": "Bir sistemin ne yapması gerektiğinden ziyade, nasıl performans göstermesi gerektiğini (örn: güvenlik, performans, kullanılabilirlik, ölçeklenebilirlik) tanımlayan gereksinimlerdir."
+                            },
+                            {
+                                "terim": "Product Goal",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Ürün Hedefi",
+                                "es_anlamlilari": [],
+                                "anlam": "Ürün İş Listesi için uzun vadeli bir hedef.",
+                                "aciklama": "Ürün İş Listesi için uzun vadeli bir hedeftir. Takımın ve paydaşların odaklanmasını sağlar ve Ürün İş Listesi'nin evrimine rehberlik eder."
+                            },
+                            {
+                                "terim": "Release Train",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Sürüm Treni",
+                                "es_anlamlilari": [],
+                                "anlam": "Büyük ölçekli çevik çerçevelerde birden fazla takımın senkronize çalıştığı kavram.",
+                                "aciklama": "Büyük ölçekli çevik çerçevelerde (örn: SAFe) birden fazla takımın senkronize bir şekilde çalıştığı ve düzenli aralıklarla entegre edilmiş çözümler sunduğu bir kavramdır."
+                            },
+                            {
+                                "terim": "Scaled Agile Framework",
+                                "kisaltma": "SAFe",
+                                "acilim": "",
+                                "turkcesi": "Ölçeklendirilmiş Çevik Çerçeve",
+                                "es_anlamlilari": [],
+                                "anlam": "Büyük ve karmaşık organizasyonlarda çevik geliştirme prensiplerini uygulamak için kullanılan çerçeve.",
+                                "aciklama": "Büyük ve karmaşık organizasyonlarda çevik geliştirme prensiplerini uygulamak için kullanılan popüler bir çerçevedir. Takım, program ve portföy seviyelerini kapsar."
+                            },
+                            {
+                                "terim": "Scrum Values",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Scrum Değerleri",
+                                "es_anlamlilari": [],
+                                "anlam": "Scrum'ın temelini oluşturan beş değer: Bağlılık, Odaklanma, Açıklık, Saygı ve Cesaret.",
+                                "aciklama": "Scrum'ın temelini oluşturan beş değer: Bağlılık, Odaklanma, Açıklık, Saygı ve Cesaret. Bu değerler, Scrum takımlarının başarılı olmasına yardımcı olur."
+                            },
+                            {
+                                "terim": "Sprint Zero",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Sıfır Sprint",
+                                "es_anlamlilari": ["Inception Sprint"],
+                                "anlam": "Projenin başlangıcında yapılan, teknik altyapı kurulumu gibi hazırlık çalışmaları içeren Sprint.",
+                                "aciklama": "Projenin başlangıcında yapılan, teknik altyapı kurulumu, ilk mimari tasarım veya keşif gibi hazırlık çalışmalarını içeren bir Sprint'tir. Genellikle ürün artışı üretmez."
+                            },
+                            {
+                                "terim": "Technical Debt Quadrant",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Teknik Borç Kadranı",
+                                "es_anlamlilari": [],
+                                "anlam": "Teknik borcu kasıtlı/kasıtsız ve akıllıca/akılsızca olarak dört kategoriye ayıran model.",
+                                "aciklama": "Teknik borcu kasıtlı/kasıtsız ve akıllıca/akılsızca olarak dört kategoriye ayıran bir modeldir. Teknik borcun nedenlerini ve yönetimini anlamaya yardımcı olur."
+                            },
+                            {
+                                "terim": "Test-Driven Development",
+                                "kisaltma": "TDD",
+                                "acilim": "",
+                                "turkcesi": "Test Odaklı Geliştirme",
+                                "es_anlamlilari": [],
+                                "anlam": "Geliştiricilerin kodu yazmadan önce testleri yazdığı yazılım geliştirme uygulaması.",
+                                "aciklama": "Geliştiricilerin kodu yazmadan önce testleri yazdığı bir yazılım geliştirme uygulamasıdır. Kırmızı-Yeşil-Refactor döngüsüyle ilerler ve kod kalitesini artırır."
+                            },
+                            {
+                                "terim": "Three Amigos",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Üç Arkadaş",
+                                "es_anlamlilari": [],
+                                "anlam": "Ürün Sahibi, Geliştirici ve Test Uzmanı'nın kullanıcı hikayelerini tartıştığı pratik.",
+                                "aciklama": "Ürün Sahibi, Geliştirici ve Test Uzmanı'nın bir araya gelerek kullanıcı hikayelerini tartışması ve ortak bir anlayışa varması pratiğidir. Gereksinimlerin netleşmesine yardımcı olur."
+                            },
+                            {
+                                "terim": "Value Proposition",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Değer Önerisi",
+                                "es_anlamlilari": [],
+                                "anlam": "Bir ürün veya hizmetin müşterilere sunduğu benzersiz faydaları açıklayan ifade.",
+                                "aciklama": "Bir ürün veya hizmetin müşterilere sunduğu benzersiz faydaları ve sorun çözümlerini açıklayan bir ifadedir."
+                            },
+                            {
+                                "terim": "Working Software",
+                                "kisaltma": "",
+                                "acilim": "",
+                                "turkcesi": "Çalışan Yazılım",
+                                "es_anlamlilari": [],
+                                "anlam": "İşlevsel ve kullanılabilir yazılımın önemi.",
+                                "aciklama": "Çevik Manifestonun temel değerlerinden biridir; kapsamlı dökümantasyondan ziyade işlevsel ve kullanılabilir yazılımın önemini vurgular."
+                            }
+                        ];
+                    }
+                    this.filterTerms();
+                },
+
+                getPillClass(index) {
+                    const classes = ['pill-blue', 'pill-green', 'pill-purple', 'pill-pink', 'pill-orange', 'pill-teal'];
+                    return classes[index % classes.length];
+                },
+
+                filterTerms() {
+                    let filtered = this.terms;
+
+                    if (this.searchTerm) {
+                        filtered = this.terms.filter(term =>
+                            term.terim.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+                            term.turkcesi.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+                            term.anlam.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+                            term.aciklama.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+                            (term.kisaltma && term.kisaltma.toLowerCase().includes(this.searchTerm.toLowerCase())) ||
+                            (term.acilim && term.acilim.toLowerCase().includes(this.searchTerm.toLowerCase())) ||
+                            (term.es_anlamlilari && term.es_anlamlilari.some(syn => syn.toLowerCase().includes(this.searchTerm.toLowerCase())))
+                        );
+                    }
+
+                    // Sort alphabetically
+                    filtered.sort((a, b) => a.terim.localeCompare(b.terim));
+
+                    // Distribute terms evenly across columns
+                    const totalTerms = filtered.length;
+                    const termsPerColumn = Math.ceil(totalTerms / 3);
+
+                    this.filteredTerms.column1 = filtered.slice(0, termsPerColumn);
+                    this.filteredTerms.column2 = filtered.slice(termsPerColumn, termsPerColumn * 2);
+                    this.filteredTerms.column3 = filtered.slice(termsPerColumn * 2);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
